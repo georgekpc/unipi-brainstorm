@@ -1,0 +1,273 @@
+/*
+File: notes.css
+
+Abstract: Sticky Notes Demo
+
+Version 1.1: added filtered search
+Version 1.0: first version
+
+Disclaimer: IMPORTANT:  This Apple software is supplied to you by
+Apple Inc. ("Apple") in consideration of your agreement to the
+following terms, and your use, installation, modification or
+redistribution of this Apple software constitutes acceptance of these
+terms.  If you do not agree with these terms, please do not use,
+install, modify or redistribute this Apple software.
+
+In consideration of your agreement to abide by the following terms, and
+subject to these terms, Apple grants you a personal, non-exclusive
+license, under Apple's copyrights in this original Apple software (the
+"Apple Software"), to use, reproduce, modify and redistribute the Apple
+Software, with or without modifications, in source and/or binary forms;
+provided that if you redistribute the Apple Software in its entirety and
+without modifications, you must retain this notice and the following
+text and disclaimers in all such redistributions of the Apple Software.
+Neither the name, trademarks, service marks or logos of Apple Inc.
+may be used to endorse or promote products derived from the Apple
+Software without specific prior written permission from Apple.  Except
+as expressly stated in this notice, no other rights or licenses, express
+or implied, are granted by Apple herein, including but not limited to
+any patent rights that may be infringed by your derivative works or by
+other works in which the Apple Software may be incorporated.
+
+The Apple Software is provided by Apple on an "AS IS" basis.  APPLE
+MAKES NO WARRANTIES, EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION
+THE IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS
+FOR A PARTICULAR PURPOSE, REGARDING THE APPLE SOFTWARE OR ITS USE AND
+OPERATION ALONE OR IN COMBINATION WITH YOUR PRODUCTS.
+
+IN NO EVENT SHALL APPLE BE LIABLE FOR ANY SPECIAL, INDIRECT, INCIDENTAL
+OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) ARISING IN ANY WAY OUT OF THE USE, REPRODUCTION,
+MODIFICATION AND/OR DISTRIBUTION OF THE APPLE SOFTWARE, HOWEVER CAUSED
+AND WHETHER UNDER THEORY OF CONTRACT, TORT (INCLUDING NEGLIGENCE),
+STRICT LIABILITY OR OTHERWISE, EVEN IF APPLE HAS BEEN ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+
+Copyright (C) 2010 Apple Inc. All Rights Reserved.
+*/
+
+body {
+    font-family: 'Lucida Grande', 'Helvetica', sans-serif;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+p.dragnote {
+    margin-top: 0;
+    color: #666666;
+    font-size: 12px;
+}
+.note,
+.edit {
+    /*background-color: rgb(255, 240, 70);*/
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+}
+.note {
+    height: 250px;
+    /* padding: 5px;*/
+    position: absolute;
+    width: 200px;
+    -webkit-box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+    -webkit-transform: scale(1.0);
+    opacity: 1;
+}
+.note.closed {
+    -webkit-transition-property: -webkit-transform, opacity;
+    -webkit-transition-duration: 250ms;
+    -webkit-transform-origin: top left;
+    -webkit-transform: skew(30deg, 0deg) scale(0.01);
+    opacity: 0;
+}
+.closebutton {
+    display: none;
+    background-image: url(deleteButton.png);
+    height: 30px;
+    position: absolute;
+    left: -15px;
+    top: -15px;
+    width: 30px;
+    z-index: inherit;
+}
+.morebutton {
+    display: none;
+    background-image: url(circle.png);
+    background-repeat: no-repeat;
+    height: 30px;
+    position: absolute;
+    left: 140px;
+    top: -15px;
+    width: 30px;
+    z-index: inherit;
+}
+.plussbutton {
+    display: none;
+    background-image: url(plus.png);
+    background-repeat: no-repeat;
+    height: 30px;
+    position: absolute;
+    left: 160px;
+    top: -15px;
+    width: 30px;
+    z-index: inherit;
+}
+.minusbutton {
+    display: none;
+    background-image: url(minus.png);
+    background-repeat: no-repeat;
+    height: 30px;
+    position: absolute;
+    left: 120px;
+    top: -15px;
+    width: 30px;
+    z-index: inherit;
+}
+.sharebutton {
+    display: none;
+    background-image: url(share.png);
+    background-repeat: no-repeat;
+    height: 30px;
+    position: absolute;
+    left: 180px;
+    top: -15px;
+    width: 30px;
+    z-index: inherit;
+}
+.note:hover .closebutton {
+    display: block;
+}
+.note:hover .morebutton {
+    display: block;
+}
+.note:hover .sharebutton {
+    display: block;
+}
+.note:hover .minusbutton {
+    display: block;
+}
+.note:hover .plussbutton {
+    display: block;
+}
+@-webkit-keyframes pulsing {
+    0% {
+        -webkit-transform: scale(1);
+    }
+    50% {
+        -webkit-transform: scale(1.05);
+    }
+    100% {
+        -webkit-transform: scale(1);
+    }
+}
+.note.selected {
+    /*
+    -webkit-animation: pulsing 1.5s infinite ease-in-out;
+    -webkit-animation-delay: 0.2s;
+    */
+}
+.closebutton:active {
+    background-image: url(deleteButtonPressed.png);
+}
+.edit {
+    outline: none;
+    border: none;
+    font-size: 18px;
+    height: 240px;
+    width: 195px;
+    overflow: hidden;
+    resize: none;
+}
+.timestamp {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    font-size: 9px;
+    background-color: #db0;
+    color: white;
+    border-top: 1px solid #a80;
+    padding: 4px 4px;
+    text-align: right;
+    cursor: move;
+}
+.overlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    background-color: Black;
+    opacity: 0.0;
+    z-index: -1;
+    -webkit-transition: opacity 0.2s linear;
+    cursor: move;
+}
+.overlay.shown {
+    opacity: 0.5;
+    z-index: inherit;
+}
+@media screen and (device-width: 320px),
+screen and (device-width: 768px) {
+    /* content area for each note has to be sized a little differently for iPhone/iPad */
+    .edit {
+        font-size: 16px;
+        height: 230px;
+        width: 180px;
+    }
+    /* close button should always be visible on iPhone/iPad */
+    .closebutton {
+        display: block;
+    }
+    .morebutton {
+        display: block;
+    }
+}
+.flip3D {
+    position: absolute;
+    width: 200px;
+    height: 250px;
+}
+.flip3D > .front {
+    position: absolute;
+    -webkit-transform: perspective(600px) rotateY(0deg);
+    transform: perspective(600px) rotateY(0deg);
+    width: 200px;
+    height: 250px;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transition: -webkit-transform .5s linear 0s;
+    transition: transform .5s linear 0s;
+}
+.flip3D > .back {
+    position: absolute;
+    -webkit-transform: perspective(600px) rotateY(180deg);
+    transform: perspective(600px) rotateY(180deg);
+    width: 200px;
+    height: 250px;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transition: -webkit-transform .5s linear 0s;
+    transition: transform .5s linear 0s;
+}
+.flippedf {
+    -webkit-transform: perspective(600px) rotateY(-180deg);
+    transform: perspective(600px) rotateY(-180deg);
+}
+.flippedb {
+    -webkit-transform: perspective(600px) rotateY(0deg);
+    transform: perspective(600px) rotateY(0deg);
+}
+/*
+.flip3D:active > .front {
+    -webkit-transform: perspective(600px) rotateY(-180deg);
+    transform: perspective(600px) rotateY(-180deg);
+}
+.flip3D:active > .back {
+    -webkit-transform: perspective(600px) rotateY(0deg);
+    transform: perspective(600px) rotateY(0deg);
+}
+*/

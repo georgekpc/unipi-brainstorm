@@ -1,0 +1,52 @@
+body {
+	color: #444;
+	font-family: Arial, sans-serif;
+}
+
+h1 {
+	font-size: 24px;
+	margin-bottom: 20px;
+}
+
+#area {
+	position: relative;
+}
+
+#area > div {
+	background-color: rgba(122, 122, 122, 0);
+	text-align: center;
+	font-size: 50px;
+}
+
+
+
+p {
+	margin: 5px 0;
+}
+
+
+.drag {
+	position: absolute;
+	border: 1px solid #89B;
+	background: #BCE;
+	height: 58px;
+	width: 58px;
+	cursor: move;
+	top: 120px;
+}
+.selected {
+	background-color: #ECB;
+	border-color: #B98;
+}
+
+.selection {
+	position: absolute;
+	border: 1px solid #89B;
+	background: #BCE;
+	background-color: #BEC;
+	border-color: #8B9;
+}
+.active {  
+	background-color: #CEB;
+	border-color: #9B8;
+}
